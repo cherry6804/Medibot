@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+<title>Medibot - Personal Medical Assistant</title>
+<style>
+    body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: aliceblue;
+}
+
+.main {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgb(250, 238, 167);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: black;
+}
+
+.heading {
+    margin-top: 20px;
+}
+
+.head {
+    color: black;
+}
+
+.btns {
+    margin-top: 15px;
+}
+
+.btn1, .btn2{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn3, .btn4{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn1 {
+    background-color: black;
+}
+
+.btn2 {
+    background-color: black;
+}
+.btn3 {
+    background-color: grey;
+}
+.btn4 {
+    background-color: grey;
+}
+.btn1:hover, .btn2:hover, .btn3:hover, .btn4:hover{
+    opacity: 0.8;
+}
+</style>
+</head>
+<body>
+<center><h1>MEDIBOT - PERSONAL MEDICAL ASSISTANT</h1></center>
+<div class="main">
+    <div class="heading">
+        <h1 class="head">Lets Go!</h1>	
+        <div class="btns">
+            <a class="btn1" href="{{ url_for('login') }}">Log in</a>
+            <a class="btn2" href="{{ url_for('signup') }}">Sign up</a><br><br><br>
+            <a class="btn3" href="{{ url_for('contactUs') }}">Contact Us</a>
+            <a class="btn4" href="{{ url_for('help') }}">Help</a>
+        </div>
+    </div>
+</html>

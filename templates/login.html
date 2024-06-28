@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+<title>Login - Medibot</title>
+<style>body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: aliceblue;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgb(250, 238, 167);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: black;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: black;
+}
+</style>
+</head>
+<body>
+    <center><h1>MEDIBOT - PERSONAL MEDICAL ASSISTANT</h1></center>
+<div class="login-container">
+<h1>Log in</h1>
+<form onsubmit="return validateLogin()">
+<label for="username">Email:</label>
+<input type="text" id="email" name="email" required>
+<label for="password">Password:</label>
+<input type="password" id="password" name="password" required>
+<button type="submit">Log in</button><br><br>
+<p class="fp-link"><a href="{{ url_for('fp') }}">Forgot password?</a></p>
+<p class="signup-link">Not a member? <a href="{{ url_for('signup') }}">Signup now</a></p>
+</div>
+</form>
+</div>
+<script>
+function validateLogin() {
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+var isLoginSuccessful = checkLoginCredentials(email, password);
+if (isLoginSuccessful) {
+alert("Logged in succesfully.");
+window.location.href = "{{ url_for('dash') }}";
+} else {
+alert("Invalid login. Please check your credentials.");
+}
+return false;
+}
+function checkLoginCredentials(email, password) {
+    
+    var storedUserDetails = localStorage.getItem('userDetails');
+
+    if (storedUserDetails) {
+        var userDetails = JSON.parse(storedUserDetails);
+
+        return email === userDetails.email && password === userDetails.password;
+    }
+    return false;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <title>Sign Up - Medibot</title>
+    <style>body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: aliceblue;
+    }
+    
+    .signup-container {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: rgb(250, 238, 167);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    h1 {
+        color: #333;
+    }
+    
+    form {
+        margin-top: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    input {
+        width: 95%;
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+    
+    button {
+        background-color: black;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: black;
+    }
+    
+    .login-link {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+    </style>
+</head>
+<body>
+    <center><h1>MEDIBOT - PERSONAL MEDICAL ASSISTANT</h1></center>
+    <div class="signup-container">
+        <h1>Create an Account</h1>
+        <form onsubmit="signUp()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+		<option value="select">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br><br><br>
+
+            <label for="age">Date Of Birth:</label>
+            <input type="date" id="age" name="age" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="number" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" minlength="8" required>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required>
+            <button type="submit">Sign up</button><br><br>
+        </form>
+        <p class="login-link">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+    </div>
+    <script>
+        function signUp() {
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var gender = document.getElementById("gender").value;
+            var mobileNumber = document.getElementById("phoneNumber").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match. Please enter matching passwords.");
+            return ;
+            
+        }
+            var userDetails = {
+                name: name,
+                age: age,
+                gender: gender,
+                mobileNumber: phoneNumber,
+                email: email,
+                password: password
+            };
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            alert("Signup success...");
+            window.location.href = "{{ url_for('login') }}";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <title>Chat - Medibot</title>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: aliceblue;
+      }
+      #userInput {
+        display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+      }
+      #textInput {
+        width: 70%;
+        border: none;
+        border-bottom: 3px solid black;
+        font-family: monospace;
+        font-size: 17px;
+        flex: 0 1 40px;
+        flex: 1;
+        padding: 8px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+      }
+      #send-button {
+        width: 10%; 
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #444;
+        color: white;
+      }
+      .userText {
+        color: white;
+        font-family: 'Arial', sans-serif;
+        font-size: 17px;
+        text-align: right;
+        line-height: 30px;
+      }
+      .userText span {
+        background-color: darkslategrey;
+        width: 40%;
+        padding: 10px;
+        border-radius: 2px;
+      }
+      .botText {
+        color: white;
+        font-family: 'Arial', sans-serif;
+        font-size: 17px;
+        text-align: left;
+        line-height: 30px;
+      }
+      .botText span {
+        background-color: #444;
+        padding: 10px;
+        border-radius: 2px;
+      }
+      .boxed {
+        max-width: 700px;
+        margin: 50px auto;
+        height:auto;
+        padding: 20px;
+        background-color: rgb(250, 238, 167);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+        #chatbox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <center><h1>MEDIBOT - PERSONAL MEDICAL ASSISTANT</h1></center>
+    <nav>
+      <a href="{{ url_for('dash') }}">Dashboard</a>
+      <a href="{{ url_for('home') }}">Chat</a>
+    </nav>
+    <div class="box"></div>
+    <div class="boxed">
+        <div id="chatbox">
+          <p class="botText">
+            <span>Hi! I'm Medibot</span>
+          </p>
+        </div>
+        <div id="userInput">
+          <input id="textInput" type="text" name="msg" placeholder="Enter message here... " />
+          <button id="send-button" onclick="getBotResponse()">Send</button>
+          
+        </div>
+        <h6>Medibot offers predictive assistance for emergencies, though its accuracy is not absolute.</h6>
+      </div>
+      <script>
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function (data) {
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        
+        $("#textInput").keypress(function (e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <title>Dashboard - Medibot</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: aliceblue;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .dashboard-container {
+            max-width: 30%;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            align-items: center;
+            background-color: rgb(250, 238, 167);
+        }
+
+        .user-details {
+            margin-top: 20px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .user-details p {
+            margin: 10px 0;
+        }
+
+        .user-details strong {
+            margin-right: 10px;
+            width: 150px; 
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>MEDIBOT - PERSONAL MEDICAL ASSISTANT</h1></center>
+    <div class="dashboard-container">
+        <div id="Details-container"> 
+            <h1 class="head">Contact Us</h1>  
+        <p> 
+            <ul><h4>Charan Appala(Cherry)</h4>
+            <li><a href="mailto:charancherrymk@gmail.com">charancherrymk@gmail.com</a></li>
+            <li><a href="mailto:vtu20451@veltech.edu.in">vtu20451@veltech.edu.in</a></li>
+            <li><span onclick="copyToClipboard('+8555035913')" style="cursor: pointer;">8555035913</span></li>
+            <li><a href="https://wa.me/8555035913">WhatsApp</a></li></ul>
+        </p><br>
+
+        <p>
+            <ul><h4>Shreya Balurgi</h4>
+            <li><a href="mailto:vtu20459@veltech.edu.in">vtu20459@veltech.edu.in</a></li>
+            <li><span onclick="copyToClipboard('+9398935699')" style="cursor: pointer;">9398935699</span></li>
+            <li><a href="https://wa.me/9398935699">WhatsApp</a></li></ul>
+        </p><br>
+        <p>
+            <ul><h4>Praveen Royal Balaiahgari</h4>
+            <li><a href="mailto:vtu20450@veltech.edu.in">vtu20450@veltech.edu.in</a></li>
+            <li><span onclick="copyToClipboard('+9573898066')" style="cursor: pointer;">9573898066</span></li>
+            <li><a href="https://wa.me/9573898066">WhatsApp</a></li></ul>
+        </p><br>
+        </div>
+    </div>
+    <script>
+        function copyToClipboard(text) {
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Mobile number copied to clipboard: ' + text);
+        }
+    </script>
+</body>
+</html>

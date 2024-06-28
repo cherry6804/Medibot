@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <title>Dashboard - Medibot</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: aliceblue;
+        }
+        .dashboard-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgb(250, 238, 167);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        align-items: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .user-details {
+            margin-top: 20px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .user-details p {
+            margin: 10px 0;
+            display: flex;
+            text-align: center;
+            align-items: center;
+        }
+
+        .user-details strong {
+            margin-right: 10px;
+            width: 150px; 
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+        .btn1 {
+    background-color: black;
+}
+.btn1{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <center><h1>MEDIBOT - PERSONAL MEDICAL ASSISTANT</h1></center>
+    <nav>
+        <a href="{{ url_for('dash') }}">Dashboard</a>
+        <a href="{{ url_for('home') }}">Chat</a>
+    </nav>
+    <div class="dashboard-container">
+        <div class="user-details">
+            <centre><h1>User Dashboard</h1></centre>
+            <p><strong>Name:</strong> <span id="userName"></span></p>
+            <p><strong>Gender:</strong> <span id="userGender"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="userDob"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        </div>
+        <a class="btn1" href="{{ url_for('login') }}">Log out</a>
+    </div>
+    <script>
+        var storedUserDetails = localStorage.getItem('userDetails');
+
+        if (storedUserDetails) {
+            var userDetails = JSON.parse(storedUserDetails);
+            document.getElementById("userName").innerText = userDetails.name;
+            document.getElementById("userGender").innerText = userDetails.gender;
+            document.getElementById("userDob").innerText = userDetails.age;
+            document.getElementById("userEmail").innerText = userDetails.email;
+        }
+    </script>
+</body>
+</html>
